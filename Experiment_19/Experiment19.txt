@@ -1,0 +1,29 @@
+Experiment 19:
+Write a shell script that accepts two numbers, and compares them and does the following: add them if the first one is smaller than the second, multiply them if the first one is greater than the second and do nothing if they are equal. # compare.sh
+
+compare.sh
+#!/bin/bash
+read -p "Enter first number: " a
+read -p "Enter second number: " b
+if [ $a -lt $b ]
+then
+    echo "$a is smaller than $b"
+    sum=$((a+b))
+    echo "Sum = $sum"
+elif [ $a -gt $b ]
+then
+    echo "$a is greater than $b"
+    mul=$((a*b))
+    echo "Multiplication = $mul"
+else
+    echo "$a and $b are equal"
+fi
+
+
+mca@MCA03:~/mca/Anjel/Networks/Experiment_19$ chmod +x compare.sh
+mca@MCA03:~/mca/Anjel/Networks/Experiment_19$ ./compare.sh
+Enter first number: 23
+Enter second number: 32
+23 is smaller than 32
+Sum = 55
+

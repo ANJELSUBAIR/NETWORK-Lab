@@ -1,0 +1,32 @@
+Experiment 22: 
+Write a bash shell script to perform arithmetic operations (addition, subtraction,) using case 
+
+mathop.sh
+#!/bin/bash
+read -p "Enter first number: " a
+read -p "Enter second number: " b
+echo "Select operation:"
+echo "1. Addition"
+echo "2. Subtraction"
+read -p "Enter option: " ch
+case $ch in
+1) result=$((a+b))
+   echo "Addition = $result"
+   ;;
+2) result=$((a-b))
+   echo "Subtraction = $result"
+   ;;
+*) echo "Invalid choice"
+   ;;
+esac
+
+mca@MCA03:~/mca/Anjel/Networks/Experiment_22$ chmod +x mathop.sh
+mca@MCA03:~/mca/Anjel/Networks/Experiment_22$ ./mathop.sh
+Enter first number: 23    
+Enter second number: 32
+Select operation:
+1. Addition
+2. Subtraction
+Enter option: 1
+Addition = 55
+

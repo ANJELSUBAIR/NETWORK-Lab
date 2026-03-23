@@ -1,0 +1,333 @@
+I. 
+a) Create a directory named lab1, move into it, create a file data.txt, write some content using echo, and display it using cat.
+(Commands: mkdir, cd, echo, cat)
+
+mca@MCA03:~$ cd mca
+mca@MCA03:~/mca$ cd Anjel
+mca@MCA03:~/mca/Anjel$ cd network
+mca@MCA03:~/mca/Anjel/network$ mkdir lab1
+mca@MCA03:~/mca/Anjel/network$ cd lab1
+mca@MCA03:~/mca/Anjel/network/lab1$ echo "Linux Lab Experiment">data.txt
+mca@MCA03:~/mca/Anjel/network/lab1$ cat data.txt
+Linux Lab Experiment
+
+
+b)Display the last 10 lines of a file and count the number of empty lines. (Commands: tail, grep '^$')
+
+mca@MCA03:~/mca/Anjel/network/lab1$ tail -n 10 data.txt
+November 9  is written by Colleen Hoover.
+It is a romance novel.
+It is about Fallon,
+a woman scarred by a fire,
+and Ben, an aspiring novelist,
+who meet and decide to see each other only once a year on November 9th,
+forming an unconventional, 
+evolving relationship that becomes the inspiration for Ben's book,
+all while dealing with trust, secrets, 
+and the shocking truth behind Fallon's accident.
+mca@MCA03:~/mca/Anjel/network/lab1$ grep '^$' data.txt
+mca@MCA03:~/mca/Anjel/network/lab1$ grep '^$' data.txt | wc -l
+0
+
+
+c) Create a new user student1, set password, create a script file test.sh, change its ownership to student1, and grant execute permission only to the owner. (Commands: useradd, passwd, chown, chmod)
+
+mca@MCA03:~/mca/Anjel/network/lab1$ sudo useradd student1
+[sudo] password for mca: 
+useradd: group student1 exists - if you want to add this user to that group, use -g.
+mca@MCA03:~/mca/Anjel/network/lab1$ sudo useradd stdnt1
+mca@MCA03:~/mca/Anjel/network/lab1$ sudo passwd stdnt1
+New password: 
+Retype new password: 
+passwd: password updated successfully
+mca@MCA03:~/mca/Anjel/network/lab1$ 
+mca@MCA03:~/mca/Anjel/network/lab1$ sudo touch test.sh
+mca@MCA03:~/mca/Anjel/network/lab1$ sudo chown stdnt1 test.sh
+mca@MCA03:~/mca/Anjel/network/lab1$ sudo chmod 700 test.sh
+mca@MCA03:~/mca/Anjel/network/lab1$ ls -l test.sh
+-rwx------ 1 stdnt1 root 0 Mar  6 14:23 test.sh
+
+
+
+II.
+a) Create a file students.txt, insert multiple lines using cat, and display lines containing the word "MCA". (Commands: cat, grep)
+
+mca@MCA03:~/mca/Anjel/network/lab1$ cat >students.txt
+Josh MCA
+Ryan MBA
+Bridget M.Tech
+Ava M.Sc
+mca@MCA03:~/mca/Anjel/network/lab1$ grep "MCA" students.txt
+Josh MCA
+
+
+b)Copy students.txt to backup.txt, rename it to final.txt, and delete the original file. (Commands: cp, mv, rm)
+
+mca@MCA03:~/mca/Anjel/network/lab1$ cp students.txt backup.txt
+mca@MCA03:~/mca/Anjel/network/lab1$ mv backup.txt final.txt
+mca@MCA03:~/mca/Anjel/network/lab1$ rm students.txt
+mca@MCA03:~/mca/Anjel/network/lab1$ ls
+data.txt  final.txt  test.sh
+
+
+c)Generate an SSH key pair and copy it to a remote system for password-less login. (Commands: ssh-keygen, ssh-copy-id, ssh)
+
+mca@MCA03:~/mca/Anjel/network/lab1$ ssh-keygen
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (/home/mca/.ssh/id_ed25519): data2.txt
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in data2.txt
+Your public key has been saved in data2.txt.pub
+The key fingerprint is:
+SHA256:3iOvtKE/02dZsg3BHTIu3rMQIXfqSjJoUGZXv5KTHR4 mca@MCA03
+The key's randomart image is:
++--[ED25519 256]--+
+|       ..        |
+|    + . ..o + .  |
+|   + .   oE* + . |
+|  .      =+++ .  |
+|   . .  So++ .   |
+|    o o..++ = .  |
+|   .   +=oo. X   |
+|       o+=..* .  |
+|      ..++.o     |
++----[SHA256]-----+
+
+
+III.
+a) Count the number of words and lines in a file, then display the first 5 lines. (Commands: wc, head)
+
+mca@MCA03:~/mca/Anjel/network/lab1$wc data.txt
+ 17 126 754 data.txt
+mca@MCA03:~/mca/Anjel/network/lab1$ head -n 5 data.txt
+Linux Lab Experiment
+November 9  is written by Colleen Hoover.
+It is a romance novel.
+It is about Fallon,
+a woman scarred by a fire,
+
+
+b)Create 3 files and compress them into archive.tar, then extract into a new directory. (Commands: touch, tar, mkdir)
+
+mca@MCA03:~/mca/Anjel/network/lab1$ touch file1.txt file2.txt file3.txt
+mca@MCA03:~/mca/Anjel/network/lab1$ tar -cvf archive.tar file1.txt file2.txt file3.txt
+file1.txt
+file2.txt
+file3.txt
+mca@MCA03:~/mca/Anjel/network/lab1$ mkdir extracted_file
+mca@MCA03:~/mca/Anjel/network/lab1$ tar -xvf archive.tar -C extracted_file
+file1.txt
+file2.txt
+file3.txt
+mca@MCA03:~/mca/Anjel/network/lab1$ ls extracted_file
+file1.txt  file2.txt  file3.txt
+
+c)Search for lines that start with "Error" and do not contain the word "critical". (Commands: grep '^Error', grep -v)
+
+mca@MCA03:~/mca/Anjel/network/lab1$ grep '^It' data.txt | grep -v "is"
+It's also a day to celebrate culture with Go to an Art Museum Day and the inauguration of the Kartarpur Corridor in 2019
+
+
+IV.	
+a) 
+Create a file using echo, append additional content using redirection (>>), and display using less. (Commands: echo, >>, less)
+
+mca@MCA03:~/mca/Anjel/network/lab1$ echo "Linux Operating System"> sample.txt
+mca@MCA03:~/mca/Anjel/network/lab1$ echo "Shell Scripting Basics">> sample.txt
+mca@MCA03:~/mca/Anjel/network/lab1$ less sample.txt
+
+Linux Operating System
+Shell Scripting Basics
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+(END)
+
+
+b) 
+Grant read and write permission to the group for final.txt, and verify permissions.(Commands: chmod, ls -l)
+
+mca@MCA03:~/mca/Anjel/network/lab1$ chmod g+rw final.txt
+mca@MCA03:~/mca/Anjel/network/lab1$ ls -l final.txt
+-rw-rw-r-- 1 mca mca 42 Mar  6 14:30 final.txt
+
+
+c)Display running processes of the current logged-in user in detailed format and show disk usage in human-readable format.
+(Commands: ps, df -h)
+
+mca@MCA03:~/mca/Anjel/network/lab1$ ps -u $USER -f
+UID          PID    PPID  C STIME TTY          TIME CMD
+mca         1493       1  0 11:18 ?        00:00:03 /usr/lib/systemd/systemd --u
+mca         1495    1493  0 11:18 ?        00:00:00 (sd-pam)
+mca         1517    1493  0 11:18 ?        00:00:55 /usr/bin/pipewire
+mca         1518    1493  0 11:18 ?        00:00:00 /usr/bin/pipewire -c filter-
+mca         1520    1493  0 11:18 ?        00:00:02 /snap/snapd-desktop-integrat
+mca         1521    1493  1 11:18 ?        00:02:36 /usr/bin/wireplumber
+mca         1522    1493  0 11:18 ?        00:00:29 /usr/bin/pipewire-pulse
+mca         1523    1493  0 11:18 ?        00:00:00 /usr/bin/gnome-keyring-daemo
+mca         1548    1493  0 11:18 ?        00:00:03 /usr/bin/dbus-daemon --sessi
+mca         1566    1477  0 11:18 tty2     00:00:00 /usr/libexec/gdm-wayland-ses
+mca         1570    1566  0 11:18 tty2     00:00:00 /usr/libexec/gnome-session-b
+mca         1628    1493  0 11:18 ?        00:00:00 /usr/libexec/gcr-ssh-agent -
+mca         1629    1493  0 11:18 ?        00:00:00 /usr/libexec/gnome-session-c
+mca         1643    1493  0 11:18 ?        00:00:00 /usr/libexec/gvfsd
+mca         1651    1493  0 11:18 ?        00:00:00 /usr/libexec/gvfsd-fuse /run
+mca         1654    1493  0 11:18 ?        00:00:00 /usr/libexec/gnome-session-b
+mca         1700    1654  0 11:18 ?        00:00:00 /usr/libexec/at-spi-bus-laun
+mca         1701    1493  3 11:18 ?        00:07:27 /usr/bin/gnome-shell
+mca         1714    1700  0 11:18 ?        00:00:01 /usr/bin/dbus-daemon --confi
+mca         1772    1493  0 11:18 ?        00:00:00 /usr/libexec/xdg-document-po
+mca         1780    1493  0 11:18 ?        00:00:00 /usr/libexec/xdg-permission-
+mca         1806    1493  0 11:18 ?        00:00:00 /usr/libexec/at-spi2-registr
+mca         1929    1493  0 11:18 ?        00:00:00 /usr/libexec/gnome-shell-cal
+mca         1936    1493  0 11:18 ?        00:00:00 /usr/libexec/evolution-sourc
+mca         1948    1493  0 11:18 ?        00:00:00 /usr/libexec/dconf-service
+mca         1960    1493  0 11:18 ?        00:00:00 /usr/bin/gjs -m /usr/share/g
+mca         1965    1493  0 11:18 ?        00:00:30 /usr/bin/ibus-daemon --panel
+mca         1967    1493  0 11:18 ?        00:00:00 /usr/libexec/gsd-a11y-settin
+mca         1969    1493  0 11:18 ?        00:00:00 /usr/libexec/gsd-color
+mca         1971    1493  0 11:18 ?        00:00:00 /usr/libexec/gsd-datetime
+mca         1973    1493  0 11:18 ?        00:00:00 /usr/libexec/gsd-housekeepin
+mca         1979    1493  0 11:18 ?        00:00:00 /usr/libexec/gsd-keyboard
+mca         1982    1493  0 11:18 ?        00:00:16 /usr/libexec/gsd-media-keys
+mca         1984    1493  0 11:18 ?        00:00:00 /usr/libexec/gsd-power
+mca         1996    1493  0 11:18 ?        00:00:00 /usr/libexec/gsd-print-notif
+mca         2002    1493  0 11:18 ?        00:00:00 /usr/libexec/gsd-rfkill
+mca         2003    1493  0 11:18 ?        00:00:00 /usr/libexec/goa-daemon
+mca         2009    1493  0 11:18 ?        00:00:00 /usr/libexec/gsd-screensaver
+mca         2010    1493  0 11:18 ?        00:00:00 /usr/libexec/gsd-sharing
+mca         2015    1493  0 11:18 ?        00:00:00 /usr/libexec/gsd-smartcard
+mca         2019    1493  0 11:18 ?        00:00:00 /usr/libexec/gsd-sound
+mca         2022    1493  0 11:18 ?        00:00:00 /usr/libexec/gsd-wacom
+mca         2068    1654  0 11:18 ?        00:00:00 /usr/libexec/gsd-disk-utilit
+mca         2072    1654  0 11:18 ?        00:00:00 /usr/libexec/evolution-data-
+mca         2104    1493  0 11:18 ?        00:00:00 /usr/libexec/gvfs-udisks2-vo
+mca         2134    1493  0 11:18 ?        00:00:00 /usr/libexec/goa-identity-se
+mca         2173    1965  0 11:18 ?        00:00:00 /usr/libexec/ibus-memconf
+mca         2180    1965  0 11:18 ?        00:00:09 /usr/libexec/ibus-extension-
+mca         2186    1493  0 11:18 ?        00:00:00 /usr/libexec/ibus-portal
+mca         2211    1493  0 11:18 ?        00:00:00 /usr/libexec/evolution-calen
+mca         2245    1493  0 11:18 ?        00:00:00 /usr/libexec/gvfs-mtp-volume
+mca         2257    1493  0 11:18 ?        00:00:00 /usr/libexec/gvfs-afc-volume
+mca         2269    1493  0 11:18 ?        00:00:00 /usr/libexec/evolution-addre
+mca         2271    1493  0 11:18 ?        00:00:00 /usr/libexec/gvfs-goa-volume
+mca         2279    1493  0 11:18 ?        00:00:00 /usr/libexec/gvfs-gphoto2-vo
+mca         2300    1965  0 11:18 ?        00:00:10 /usr/libexec/ibus-engine-sim
+mca         2348    1493  0 11:18 ?        00:00:00 /usr/libexec/gsd-printer
+mca         2356    1643  0 11:18 ?        00:00:00 /usr/libexec/gvfsd-trash --s
+mca         2379    1493  0 11:18 ?        00:00:02 /usr/libexec/xdg-desktop-por
+mca         2391    1493  0 11:18 ?        00:00:00 /usr/libexec/tracker-miner-f
+mca         2392    1493  0 11:18 ?        00:00:02 /usr/libexec/xdg-desktop-por
+mca         2450    1493  0 11:18 ?        00:00:00 /usr/bin/gjs -m /usr/share/g
+mca         2491    1493  0 11:18 ?        00:00:00 /usr/libexec/xdg-desktop-por
+mca         2492    1520  0 11:18 ?        00:00:00 /snap/snapd-desktop-integrat
+mca         2514    1493  0 11:18 ?        00:00:00 /usr/libexec/gvfsd-metadata
+mca         2600    1654  0 11:19 ?        00:00:00 /usr/bin/update-notifier
+mca         2731    1643  0 11:20 ?        00:00:00 /usr/libexec/gvfsd-recent --
+mca         2792    1643  0 11:22 ?        00:00:00 /usr/libexec/gvfsd-network -
+mca         2803    1643  0 11:22 ?        00:00:00 /usr/libexec/gvfsd-smb-brows
+mca         2814    1643  0 11:22 ?        00:00:00 /usr/libexec/gvfsd-dnssd --s
+mca         3856    1493  0 12:02 ?        00:00:00 /usr/bin/snap userd
+mca         6290    1493  0 13:59 ?        00:00:04 /usr/bin/nautilus --gapplica
+mca         6304    1701  0 13:59 ?        00:00:01 gjs /usr/share/gnome-shell/e
+mca         6379    1493  0 13:59 ?        00:00:00 /bin/bash /snap/libreoffice/
+mca         6521    6379  3 13:59 ?        00:02:15 /snap/libreoffice/366/lib/li
+mca         8813    1701  2 14:13 ?        00:01:20 /snap/firefox/7901/usr/lib/f
+mca         8886    1493  0 14:13 ?        00:00:00 /snap/firefox/7901/usr/lib/f
+mca         8999    8813  0 14:13 ?        00:00:00 /snap/firefox/7901/usr/lib/f
+mca         9003    8999  0 14:13 ?        00:00:00 /snap/firefox/7901/usr/lib/f
+mca         9040    8999  0 14:13 ?        00:00:09 /snap/firefox/7901/usr/lib/f
+mca         9050    8999  0 14:13 ?        00:00:00 /snap/firefox/7901/usr/lib/f
+mca         9253    8999  0 14:13 ?        00:00:01 /snap/firefox/7901/usr/lib/f
+mca         9615    8999  0 14:13 ?        00:00:00 /snap/firefox/7901/usr/lib/f
+mca         9623    8999  0 14:13 ?        00:00:13 /snap/firefox/7901/usr/lib/f
+mca         9630    8999  0 14:13 ?        00:00:06 /snap/firefox/7901/usr/lib/f
+mca         9665    8999  0 14:13 ?        00:00:02 /snap/firefox/7901/usr/lib/f
+mca         9898    8999  0 14:14 ?        00:00:02 /snap/firefox/7901/usr/lib/f
+mca         9944    8999  0 14:14 ?        00:00:00 /snap/firefox/7901/usr/lib/f
+mca         9981    1701  1 14:14 ?        00:00:40 /usr/bin/gnome-text-editor
+mca        10550    1493  0 14:46 ?        00:00:08 /usr/libexec/gnome-terminal-
+mca        10557   10550  0 14:46 pts/0    00:00:00 bash
+mca        10864   10557 99 15:01 pts/0    00:00:00 ps -u mca -f
+
+
+mca@MCA03:~/mca/Anjel/network/lab1$df -h
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           1.6G  2.5M  1.6G   1% /run
+/dev/nvme0n1p7  176G   42G  125G  26% /
+tmpfs           7.7G     0  7.7G   0% /dev/shm
+tmpfs           5.0M  8.0K  5.0M   1% /run/lock
+efivarfs        256K  127K  125K  51% /sys/firmware/efi/efivars
+/dev/nvme0n1p1   96M   33M   64M  34% /boot/efi
+tmpfs           1.6G  220K  1.6G   1% /run/user/1000
+
+
+V.
+a) Find all .txt files in the current directory and show their details.
+(Commands: find, ls)
+
+mca@MCA03:~/mca/Anjel/network/lab1$ find . -name "*.txt"
+./file3.txt
+./final.txt
+./sample.txt
+./data2.txt
+./file1.txt
+./data.txt
+./extracted_file/file3.txt
+./extracted_file/file1.txt
+./extracted_file/file2.txt
+./file2.txt
+./extracted_files/file3.txt
+./extracted_files/file1.txt
+./extracted_files/file2.txt
+mca@MCA03:~/mca/Anjel/network/lab1$ ls -l *.txt
+-rw------- 1 mca mca 444 Mar  6 14:32 data2.txt
+-rw-rw-r-- 1 mca mca 754 Mar  6 14:23 data.txt
+-rw-rw-r-- 1 mca mca   0 Mar  6 14:36 file1.txt
+-rw-rw-r-- 1 mca mca   0 Mar  6 14:36 file2.txt
+-rw-rw-r-- 1 mca mca   0 Mar  6 14:36 file3.txt
+-rw-rw-r-- 1 mca mca  42 Mar  6 14:30 final.txt
+-rw-rw-r-- 1 mca mca  46 Mar  6 14:55 sample.txt
+
+
+b) Extract the first column from a file using cut, combine it with another file using paste, and save the output using redirection.(Commands: cut, paste, >)
+
+mca@MCA03:~/mca/Anjel/network/lab1$ cat >file1.txt
+1 Anu
+2 Rahul
+3 Meera
+mca@MCA03:~/mca/Anjel/network/lab1$ cat >file2.txt
+MCA
+MBA
+M.Tech
+
+c)Monitor system processes using top, exit the command properly, then list current directory contents with detailed permissions. (Commands: top, ls -l)
+
+mca@MCA03:~/mca/Anjel/network/lab1$ cut -d ' ' -f1 file1.txt
+1
+2
+3
+mca@MCA03:~/mca/Anjel/network/lab1$ cut -d ' ' -f1 file1.txt | paste - file2.txt>result.txt
+mca@MCA03:~/mca/Anjel/network/lab1$ cat result.txt
+1	MCA
+2	MBA
+3	M.Tech

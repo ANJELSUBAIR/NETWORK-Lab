@@ -1,0 +1,27 @@
+Experiment 21:
+Write a shell script to check whether the given number is a palindrome or not. #palindrome.sh
+
+palindrome.sh
+#!/bin/bash
+read -p "Enter a number:" n
+rev=0
+temp=$n
+while [ $n -gt 0 ]
+do
+    r=$((n%10))
+    rev=$((rev*10+r))
+    n=$((n/10))
+done
+if [ $temp -eq $rev ]
+then
+    echo "Palindrome number"
+else
+    echo "Not a palindrome"
+fi
+
+
+mca@MCA03:~/mca/Anjel/Networks/Experiment_21$ chmod +x palindrome.sh
+mca@MCA03:~/mca/Anjel/Networks/Experiment_21$ ./palindrome.sh
+Enter a number:323
+Palindrome number
+
