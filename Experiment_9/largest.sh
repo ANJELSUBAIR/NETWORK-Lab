@@ -1,0 +1,18 @@
+#!/bin/bash
+echo "Enter three numbers:"
+read a b c
+if [ $a -ge $b ] && [ $a -ge $c ]
+then
+    echo "Largest number is: $a"
+elif [ $b -ge $a ] && [ $b -ge $c ]
+then
+    echo "Largest number is: $b"
+else
+    echo "Largest number is: $c"
+fi
+
+mca@MCA03:~/mca/Anjel/network$ chmod +x file2.sh
+mca@MCA03:~/mca/Anjel/network$ ./file2.sh
+Enter three numbers:
+12 13 14
+Largest number is: 14
